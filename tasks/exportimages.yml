@@ -7,8 +7,8 @@
   tags:
     - core
   when: 
-    - rhexport_images is defined
-    - rhexport_core is defined
+    - rhexport_images == "yes" 
+    - rhexport_core == "yes"
 
 #- debug: var=images_list
 
@@ -19,6 +19,6 @@
   tags:
     - apps
   when:
-    - rhexport_images is defined
-    - rhexport_apps is defined
+    - rhexport_images == "yes"
+    - rhexport_apps == "yes"
 

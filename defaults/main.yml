@@ -15,6 +15,9 @@ etcd_version : 3.2.22
 #Path for the trigger for
 trigger: /tmp/trigger
 
+# Should images be removed first before pulling.
+rhremove_images: "yes"
+
 # Should images be exported 
 rhexport_core: "yes"
 rhexport_apps: "yes"
