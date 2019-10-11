@@ -29,8 +29,9 @@ rhexport_core: "yes"
 rhexport_apps: "yes"
 
 # Path for exports
-rh_ocp_export_path_core: /var/lib/docker/overlay2/export/core.tar
-rh_ocp_export_path_app: /var/lib/docker/overlay2/export/app.tar
+rh_ocp_export_path: "/exports"
+rh_ocp_export_path_core: "{{rh_ocp_export_path}}/core.tar"
+rh_ocp_export_path_app: "{{rh_ocp_export_path}}/app.tar"
 
 #minimum size required to pull images
 min: 21000000
