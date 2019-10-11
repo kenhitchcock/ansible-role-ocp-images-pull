@@ -5,9 +5,12 @@
     path: "{{rh_ocp_export_path}}"
   register: exportpath
 
-- name: Debugging
-  debug:
-    msg: "{{exportpath}}"
+- name: "Creates directory if missing"
+  file:
+    path: "{{rh_ocp_export_path}}"
+    state: directory
+  when: 
+    - exportpath.stat.exists
 
 - name: Get a list of all containers and export
   shell: |
@@ -16,7 +19,6 @@
   tags:
     - core
   when: 
-    - exportpath.stat.exists
     - rhexport_images == "yes" 
     - rhexport_core == "yes"
 
@@ -27,7 +29,6 @@
   tags:
     - apps
   when:
-    - exportpath.stat.exists
     - rhexport_images == "yes"
     - rhexport_apps == "yes"
 
