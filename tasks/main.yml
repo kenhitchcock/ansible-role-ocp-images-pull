@@ -1,0 +1,14 @@
+---
+
+- block:
+    - name: "PreChecks"
+      include_tasks: prechecks.yml
+      tags: [prechecks]
+
+    - name: "Remove images"
+      include_tasks: removeimages.yml
+
+    - name: "Pull Images."
+      include_tasks: pullimages.yml
+
+  become: true

@@ -1,0 +1,16 @@
+---
+
+
+- name: Check if there are images already loaded on the system before removing
+  shell: |
+    docker images
+  register: loaded_images
+
+- debug: var=loaded_images
+
+- name: Remove old images from local host before pullling latest
+  shell: |
+    docker rmi $(docker images -q)
+  when: loaded_images.rc == 0
+  ignore_errors: yes
+

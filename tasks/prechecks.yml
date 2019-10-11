@@ -1,0 +1,39 @@
+---
+# tasks file for image-pull
+
+#- name: Fail the playbook when the OS version is not RHEL 
+#  fail:
+#    msg: "The host that this playbook needs to be run on should be registered with RHN and thus should be a RHEL host and not for example Centos"
+#when: ansible_facts['distribution'] != "RedHat" 
+
+- name: Check that there is no trigger file in /tmp before pulling images. 
+  file:
+    path: "{{ trigger }}"
+    state: absent
+
+- name: Test connection to the RedHat repo for images to pull
+  shell: |
+    docker search registry.redhat.io/openshift3/ | grep -i jen
+  register: search_result
+  ignore_errors: yes
+
+#- debug: var=search_result
+
+- name: Fail the playbook if not able to connect to the image registry
+  fail:
+    msg: Unable to connect to the redhat repository.  Please check the network connection
+  when: search_result.rc != 0
+
+
+- name: Check free space of /var and if less than "{{ min }}"KB touch trigger  default path "{{ trigger }}"
+  shell:
+    if (( `df -k / | awk 'NR==2 {print $4}'` <= "{{ min }}" )); then touch "{{ trigger }}"; fi
+
+- stat:
+    path: "{{ trigger }}"
+  register: st
+
+- fail:
+    msg: "It does not look like there is enough free space on the /var filesystem"
+  when: st.stat.exists == true
+

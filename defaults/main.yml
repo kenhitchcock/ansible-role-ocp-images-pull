@@ -1,0 +1,110 @@
+---
+# defaults file for image-pull
+
+#Images tags for grouped container images
+ocp_version: v3.11.146
+image_inspector_version: 2.1
+etcd_version : 3.2.22
+
+#Path for the trigger for
+trigger: /tmp/trigger
+
+#minimum size required to pull images
+min: 21000000
+
+core_oscp_images:
+  - registry.redhat.io/openshift3/apb-base:{{ ocp_version }}
+  - registry.redhat.io/openshift3/apb-tools:{{ ocp_version }}
+  - registry.redhat.io/openshift3/automation-broker-apb:{{ ocp_version }}
+  - registry.redhat.io/openshift3/csi-attacher:{{ ocp_version }}
+  - registry.redhat.io/openshift3/csi-driver-registrar:{{ ocp_version }}
+  - registry.redhat.io/openshift3/csi-livenessprobe:{{ ocp_version }}
+  - registry.redhat.io/openshift3/csi-provisioner:{{ ocp_version }}
+  - registry.redhat.io/openshift3/grafana:{{ ocp_version }}
+  - registry.redhat.io/openshift3/image-inspector:{{ image_inspector_version }}
+  - registry.redhat.io/openshift3/local-storage-provisioner:{{ ocp_version }}
+  - registry.redhat.io/openshift3/manila-provisioner:{{ ocp_version }}
+  - registry.redhat.io/openshift3/mariadb-apb:{{ ocp_version }}
+  - registry.redhat.io/openshift3/mediawiki:{{ ocp_version }}
+  - registry.redhat.io/openshift3/mediawiki-apb:{{ ocp_version }}
+  - registry.redhat.io/openshift3/mysql-apb:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-ansible:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-ansible-service-broker:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-cli:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-cluster-autoscaler:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-cluster-capacity:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-cluster-monitoring-operator:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-console:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-configmap-reloader:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-control-plane:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-deployer:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-descheduler:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-docker-builder:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-docker-registry:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-efs-provisioner:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-egress-dns-proxy:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-egress-http-proxy:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-egress-router:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-haproxy-router:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-hyperkube:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-hypershift:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-keepalived-ipfailover:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-kube-rbac-proxy:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-kube-state-metrics:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-metrics-server:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-node:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-node-problem-detector:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-operator-lifecycle-manager:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-ovn-kubernetes:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-pod:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-prometheus-config-reloader:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-prometheus-operator:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-recycler:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-service-catalog:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-template-service-broker:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-tests:{{ ocp_version }}
+  - registry.redhat.io/openshift3/ose-web-console:{{ ocp_version }}
+  - registry.redhat.io/openshift3/postgresql-apb:{{ ocp_version }}
+  - registry.redhat.io/openshift3/registry-console:{{ ocp_version }}
+  - registry.redhat.io/openshift3/snapshot-controller:{{ ocp_version }}
+  - registry.redhat.io/openshift3/snapshot-provisioner:{{ ocp_version }}
+  - registry.redhat.io/rhel7/etcd:{{ etcd_version }}
+
+application_oscp_images:
+  - docker.io/sonatype/nexus3
+  - registry.redhat.io/openshift3/jenkins-1-rhel7
+  - registry.redhat.io/openshift3/jenkins-2-rhel7
+  - registry.redhat.io/openshift3/jenkins-agent-nodejs-8-rhel7
+  - registry.redhat.io/openshift3/jenkins-slave-base-rhel7
+  - registry.redhat.io/openshift3/jenkins-slave-maven-rhel7
+
+optional_oscp_images:
+  - registry.redhat.io/jboss-amq-6/amq63-openshift:latest
+  - registry.redhat.io/jboss-datagrid-7/datagrid71-openshift:latest
+  - registry.redhat.io/jboss-datagrid-7/datagrid71-client-openshift:latest
+  - registry.redhat.io/jboss-datavirt-6/datavirt63-openshift:latest
+  - registry.redhat.io/jboss-datavirt-6/datavirt63-driver-openshift:latest
+  - registry.redhat.io/jboss-decisionserver-6/decisionserver64-openshift:latest
+  - registry.redhat.io/jboss-processserver-6/processserver64-openshift:latest
+  - registry.redhat.io/jboss-eap-6/eap64-openshift:latest
+  - registry.redhat.io/jboss-eap-7/eap71-openshift:latest
+  - registry.redhat.io/jboss-webserver-3/webserver31-tomcat7-openshift:latest
+  - registry.redhat.io/jboss-webserver-3/webserver31-tomcat8-openshift:latest
+  - registry.redhat.io/openshift3/jenkins-2-rhel7:latest
+  - registry.redhat.io/openshift3/jenkins-agent-maven-35-rhel7:latest
+  - registry.redhat.io/openshift3/jenkins-agent-nodejs-8-rhel7:latest
+  - registry.redhat.io/openshift3/jenkins-slave-base-rhel7:latest
+  - registry.redhat.io/openshift3/jenkins-slave-maven-rhel7:latest
+  - registry.redhat.io/openshift3/jenkins-slave-nodejs-rhel7:latest
+  - registry.redhat.io/rhscl/mongodb-32-rhel7:latest
+  - registry.redhat.io/rhscl/mysql-57-rhel7:latest
+  - registry.redhat.io/rhscl/perl-524-rhel7:latest
+  - registry.redhat.io/rhscl/php-56-rhel7:latest
+  - registry.redhat.io/rhscl/postgresql-95-rhel7:latest
+  - registry.redhat.io/rhscl/python-35-rhel7:latest
+  - registry.redhat.io/redhat-sso-7/sso70-openshift:latest
+  - registry.redhat.io/rhscl/ruby-24-rhel7:latest
+  - registry.redhat.io/redhat-openjdk-18/openjdk18-openshift:latest
+  - registry.redhat.io/redhat-sso-7/sso71-openshift:latest
+  - registry.redhat.io/rhscl/nodejs-6-rhel7:latest
+  - registry.redhat.io/rhscl/mariadb-101-rhel7:latest

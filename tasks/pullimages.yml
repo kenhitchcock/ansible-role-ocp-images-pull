@@ -1,0 +1,19 @@
+---
+
+- name: Pull oscp images from registry.redhat.io
+  docker_image:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ core_oscp_images }}"
+
+- name: Pull oscp application images from registry.redhat.io and docker(nexus)
+  docker_image:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ application_oscp_images }}"
+
+- name: Pull optional oscp images from registry.redhat.io
+  docker_image:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ optional_oscp_images }}"
