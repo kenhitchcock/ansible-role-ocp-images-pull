@@ -7,10 +7,8 @@
   tags:
     - core
   when: 
-    - rhexport_images == "yes" 
-    - rhexport_core == "yes"
-
-#- debug: var=images_list
+    - 'rhexport_images == "yes"' 
+    - 'rhexport_core == "yes"'
 
 - name: Jenkins and Nexus images only for export
   shell: |
@@ -19,6 +17,6 @@
   tags:
     - apps
   when:
-    - rhexport_images == "yes"
-    - rhexport_apps == "yes"
+    - 'rhexport_images = "yes"'
+    - 'rhexport_apps = "yes"'
 

@@ -12,16 +12,23 @@
   shell: |
          docker pull "{{ item }}"
   with_items: "{{ core_oscp_images }}"
+  when:
+    - 'ocp_images_pull_core == "yes"'
 
 - name: "Pull oscp application images from registry.redhat.io and docker(nexus)"
   shell: |
          docker pull "{{ item }}"
   with_items: "{{ application_oscp_images }}"
+  when:
+    - 'ocp_images_pull_app == "yes"'
 
 - name: "Pull optional oscp images from registry.redhat.io"
   shell: |
          docker pull "{{ item }}"
   with_items: "{{ optional_oscp_images }}"
+  when:
+    - 'ocp_images_pull_opt == "yes"'
+
 
 # When docker is included by default with ansible we can use these.
 #- name: Pull oscp images from registry.redhat.io

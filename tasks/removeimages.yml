@@ -6,15 +6,15 @@
     docker images
   register: loaded_images
   when: 
-    - rhremove_images == "yes" 
+    - 'rhremove_images == "yes"' 
 
 - debug: var=loaded_images
 
 - name: Remove old images from local host before pullling latest
   shell: |
-    docker rmi $(docker images -q)
+        echo docker rmi $(docker images -q)
   when: 
     - loaded_images.rc == 0
-    - rhremove_images == "yes"
+    - 'rhremove_images == "yes"'
   ignore_errors: yes
 

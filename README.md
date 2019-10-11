@@ -24,6 +24,11 @@ OpenShift Versioning variables. Default values set to the following already.
      image_inspector_version: 2.1
      etcd_version : 3.2.22
 
+Do you want to pull images, sometimes you just want to run the role again to export tar file. Default value set to "yes"
+     ocp_images_pull_core: "yes"
+     ocp_images_pull_app: "yes"
+     ocp_images_pull_opt: "yes"
+
 If you require images to be saved to a tar file, do not change the default values below.
      rhexport_core: "yes"
      rhexport_apps: "yes"
