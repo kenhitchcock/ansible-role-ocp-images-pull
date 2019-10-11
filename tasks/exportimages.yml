@@ -1,0 +1,24 @@
+---
+
+- name: Get a list of all containers and export
+  shell: |
+    docker save $(docker images | awk 'NR>2 {print last} {last=$1}') -o "{{rh_ocp_export_path_core}}"
+  register: images_list
+  tags:
+    - core
+  when: 
+    - rhexport_images is defined
+    - rhexport_core is defined
+
+#- debug: var=images_list
+
+- name: Jenkins and Nexus images only for export
+  shell: |
+    docker save $(docker images | egrep "jen|nexus" | awk '{print $3}') -o "{{rh_ocp_export_path_app}}"
+  register: JenkinsNexus
+  tags:
+    - apps
+  when:
+    - rhexport_images is defined
+    - rhexport_apps is defined
+

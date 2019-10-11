@@ -15,6 +15,14 @@ etcd_version : 3.2.22
 #Path for the trigger for
 trigger: /tmp/trigger
 
+# Should images be exported 
+rhexport_core: "yes"
+rhexport_apps: "yes"
+
+# Path for exports
+rh_ocp_export_path_core: /var/lib/docker/overlay2/export/core.tar
+rh_ocp_export_path_app: /var/lib/docker/overlay2/export/app.tar
+
 #minimum size required to pull images
 min: 21000000
 

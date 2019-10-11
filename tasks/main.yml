@@ -11,4 +11,7 @@
     - name: "Pull Images."
       include_tasks: pullimages.yml
 
+    - name: "Save images to a tar file."
+      include_tasks: exportimages.yml
+
   become: true
