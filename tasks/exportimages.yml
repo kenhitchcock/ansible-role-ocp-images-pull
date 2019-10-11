@@ -10,7 +10,7 @@
     path: "{{rh_ocp_export_path}}"
     state: directory
   when: 
-    - exportpath.stat.exists
+    - exportpath.stat.exists == false
 
 - name: Get a list of all containers and export
   shell: |
