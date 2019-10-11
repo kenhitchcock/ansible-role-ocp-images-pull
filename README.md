@@ -17,7 +17,14 @@ Roles are available to do the above if required.
 Role Variables
 --------------
 
-All variable required for this role to run are currently set in the defaults directory of the role
+Most variables required for this role to run are currently set in the defaults directory of the role. 
+However you will need the following.
+
+   # Red Hat token credentials to access the registry. You need to create a token at access.redhat.com
+     rhreg_user: 
+     rhreg_pass: 
+     rhreg_name: "registry.redhat.io"
+
 
 Example Playbook
 ----------------

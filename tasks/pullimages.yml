@@ -1,19 +1,43 @@
 ---
 
-- name: Pull oscp images from registry.redhat.io
-  docker_image:
-    name: "{{ item }}"
-    state: present
+- name: "Login to Red Hat container Registry"
+  shell: | 
+         docker login -u "{{rhreg_user}}" -p "{{rhreg_pass}}" "{{rhreg_name}}"
+  when:
+    - rhreg_user is defined
+    - rhreg_pass is defined
+    - rhreg_name is defined
+
+- name: "Pull oscp images from registry.redhat.io"
+  shell: |
+         docker pull "{{ item }}"
   with_items: "{{ core_oscp_images }}"
 
-- name: Pull oscp application images from registry.redhat.io and docker(nexus)
-  docker_image:
-    name: "{{ item }}"
-    state: present
+- name: "Pull oscp application images from registry.redhat.io and docker(nexus)"
+  shell: |
+         docker pull "{{ item }}"
   with_items: "{{ application_oscp_images }}"
 
-- name: Pull optional oscp images from registry.redhat.io
-  docker_image:
-    name: "{{ item }}"
-    state: present
+- name: "Pull optional oscp images from registry.redhat.io"
+  shell: |
+         docker pull "{{ item }}"
   with_items: "{{ optional_oscp_images }}"
+
+# When docker is included by default with ansible we can use these.
+#- name: Pull oscp images from registry.redhat.io
+#  docker_image:
+#    name: "{{ item }}"
+#  state: present
+#  with_items: "{{ core_oscp_images }}"
+
+#- name: Pull oscp application images from registry.redhat.io and docker(nexus)
+#  docker_image:
+#    name: "{{ item }}"
+#    state: present
+#  with_items: "{{ application_oscp_images }}"
+
+#- name: Pull optional oscp images from registry.redhat.io
+#  docker_image:
+#    name: "{{ item }}"
+#  state: present
+#  with_items: "{{ optional_oscp_images }}"

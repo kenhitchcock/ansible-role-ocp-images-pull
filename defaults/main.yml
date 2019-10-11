@@ -1,6 +1,12 @@
 ---
 # defaults file for image-pull
 
+# Credentials to pull images
+rhreg_user:
+rhreg_pass:
+rhreg_name: "registry.redhat.io"
+
+
 #Images tags for grouped container images
 ocp_version: v3.11.146
 image_inspector_version: 2.1
