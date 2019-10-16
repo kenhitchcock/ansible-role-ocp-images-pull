@@ -20,7 +20,7 @@
     - core
   when: 
     - rhexport_images == "yes" 
-    - rhexport_core == "yes"
+    - ocp_images_pull_core == "yes"
 
 - name: Jenkins and Nexus images only for export
   shell: |
@@ -30,5 +30,5 @@
     - apps
   when:
     - rhexport_images == "yes"
-    - rhexport_apps == "yes"
+    - ocp_images_pull_app == "yes"
 
